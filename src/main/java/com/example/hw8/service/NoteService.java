@@ -38,6 +38,7 @@ public class NoteService {
      * @param id id нужной нам заметки
      * @return возвращаем найденную заметку, или постой объект, если заметка не найдена
      */
+    @TrackUserAction
     public Note getNoteById(Long id) {
         return noteRepository.findById(id).orElseThrow(null);
     }
@@ -47,6 +48,7 @@ public class NoteService {
      * @param noteDetails объект заметки
      * @return возвращаем измененную заметку
      */
+    @TrackUserAction
     public Note updateNote(Long id, Note noteDetails) {
         Optional<Note> optionalNote = noteRepository.findById(id);
         if (optionalNote.isPresent()) {
@@ -63,6 +65,7 @@ public class NoteService {
      * Метод удаляет заметку по id
      * @param id id заметки
      */
+    @TrackUserAction
     public void deleteProduct(Long id) {
         Note noteById = getNoteById(id);
         noteRepository.delete(noteById);
